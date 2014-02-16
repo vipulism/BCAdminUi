@@ -1,0 +1,6 @@
+.clearfix, #adminSubMenuContainer, .pageBtnGroup, .listButtonGroup, .dropUp, .dropDown, .checkField {zoom:1;}
+.btn.blueBtn, #adminSubMenuContainer.blueNav ul li a.active {filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2996e3', endColorstr='#387ed7', GradientType=0);}
+.btn.greyBtn {filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dedede',GradientType=0);}
+.btn.greyBtn:hover {filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#eeeeee',GradientType=0 );}
+.fileInput input {-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";}
+form#searchForm .searchBtn input {-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";}

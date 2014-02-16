@@ -1,0 +1,3 @@
+.btn.blueBtn, #adminSubMenuContainer.blueNav ul li a.active, .btn.greyBtn, .btn.greyBtn:hover {filter:none;}
+.fileInput input {filter:alpha(opacity=0);}
+form#searchForm .searchBtn input {filter:alpha(opacity=0);}

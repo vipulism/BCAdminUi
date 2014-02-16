@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- We don't need admin content to be indexed -->
+<meta name="robots" content="noindex" />
+<!-- // -->
+
+<!-- Insert Page Title or use {module_pagename} -->
+<title>Simple List With Add-ons</title>
+<!-- // -->
+
+<!-- We Link to the script files as instructed in the Dev Docs -->
+<!-- Remove the http:// before you publish. We just added it here while working offline -->
+<!-- For example with jQuery -->
+<!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>  -->
+
+<!-- You can also use Google's CDN if you like -->
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.3.1/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+<script type="text/javascript" src="http://cdn.worldsecuresystems.com/bcapi/bcapi-0.0.1.min.js"></script>
+
+<!-- We attach our plugins file and css. Please follow the video tutorial for details -->
+<script type="text/javascript" src="app-assets/js/plugins.js"></script>
+<link rel="stylesheet" type="text/css" href="app-assets/css/admin-styles.css">
+
+</head>
+
+<!-- The class adminCustomPage is there just so we can target elements specifically within this class in css -->
+<!-- There is also a use for it when you have certain pages that are available in front-end and Admin at the same time -->
+
+<body class="adminCustomPage">
+<!-- // -->
+
+<!----------------- START CONTENT ----------------->
+
+<!-- Standard Sub-Menu -->
+<div id="adminSubMenuContainer" class="adminSubMenuContainer blueNav">
+	<ul class="clearfix">
+		
+		<!--
+			This is a demo menu Only. You need to make the changes according to your development.
+			The active state of the menu is done manual in this example. You can just do the same,
+			or you can add some javascript to do it automatically.
+		-->
+		
+		<li><a href="simple-list.html">Simple List</a></li>
+	 	<li><a href="simple-list-addons.html" class="active">List + Add-ons</a></li>
+	 	<li><a href="complex-list.html">Complex List</a></li>
+	 	<li><a href="form-elements.html">Form Elements</a></li>
+	 	<li><a href="basic-crm.html">Basic CRM</a></li>
+		<li class="more"><a href="#" class="moreLink"><span>More</span><i class="icon-caret-down"></i></a>
+			<ul class="dropDown">
+				<li><a href="#" class="active">Active Link</a></li>
+				<li><a href="#">Another Link</a></li>
+				<li><a href="#">And Another Link</a></li>
+			</ul>
+		</li>
+        
+	</ul>
+</div>
+<!-- // -->
+
+<!-- Back to Main List -->
+<div class="backLink"><a href="#">Back to List of Items</a></div>
+<!-- // -->
+
+<!-- CLIENT INSTRUCTIONS TOGGLE
+These Instructions are for your client not for you.
+So you can instruct your client if you have any specifics
+you want them to know about.
+
+The Div is set to hidden at load, but if you want it to show,
+just reverse the functions in scripts.js.
+
+You may also want to add a call so it is open on load
+and if the client closes it, it stores the call in a cookie
+and doesn't open again until the button is clicked.
+(this is not implemented at the moment)
+ -->
+
+<a href="#" id="showInstructions" class="instructionsToggle">Important Instructions<i class="icon-question-sign"></i></a>
+<a href="#" id="hideInstructions" class="instructionsToggle">Hide Instructions<i class="icon-remove-sign"></i></a>
+<div id="instructionsContainer" class="mainNote">
+	<h2>Instruction Heading</h2>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consequat nulla sed adipiscing placerat. Cras viverra lectus a scelerisque sollicitudin. Cras tempor semper porttitor.</p>
+	<p>Pellentesque tincidunt, nisi vel consectetur placerat, nisi nunc vulputate metus, sit amet consectetur orci augue id odio.</p>
+	<ul>
+		<li>Aenean sit amet tellus at nisl blandit vestibulum.</li>
+		<li>nterdum et malesuada fames ac ante ipsum primis in faucibus.</li>
+		<li>Integer et sem tellus, Suspendisse metus felis.</li>
+	</ul>
+</div>
+<!-- // -->
+
+<!-- Main Wrapper -->
+<div id="adminContentWrapper">
+<!-- // -->
+
+	<!-- Section Content Container (Always wrap section with this for consistency) -->
+	<div class="contentBody">
+	<!-- // -->
+    
+		<!-- Section Header -->
+		<h2 class="contentHeaders"><span>Items List Table</span></h2>
+		<!-- // -->
+    
+		<!-- Start List Table -->
+		<table width="100%" border="0" cellspacing="0" cellpadding="10" class="tableList">
+			<tr>
+				<th width="40%" scope="col">Item Name</th>
+				<th width="20%" scope="col">Order/Weighting</th>
+				<th width="20%" scope="col">Actions</th>
+				<th width="20%" scope="col">Delete</th>
+			</tr>
+			<tr>
+				<td><a href="#">Lorem ipsum dolor sit amet</a></td>
+				<td>1</td>
+				<td><a href="#">Edit</a></td>
+				<td><a href="#">Delete</a></td>
+			</tr>
+			<tr>
+				<td><a href="#">consectetur adipiscing elit</a></td>
+				<td>2</td>
+				<td><a href="#">Edit</a></td>
+				<td><a href="#">Delete</a></td>
+			</tr>
+			<tr>
+				<td><a href="#">Suspendisse consequat</a></td>
+				<td>3</td>
+				<td><a href="#">Edit</a></td>
+				<td><a href="#">Delete</a></td>
+			</tr>
+			<tr>
+				<td><a href="#">nulla sed adipiscing placerat</a></td>
+				<td>4</td>
+				<td><a href="#">Edit</a></td>
+				<td><a href="#">Delete</a></td>
+			</tr>
+			<tr>
+				<td><a href="#">Cras viverra lectus a scelerisque sollicitudin</a></td>
+				<td>5</td>
+				<td><a href="#">Edit</a></td>
+				<td><a href="#">Delete</a></td>
+			</tr>
+			<tr>
+				<td><a href="#">Cras tempor semper porttitor</a></td>
+				<td>6</td>
+				<td><a href="#">Edit</a></td>
+				<td><a href="#">Delete</a></td>
+			</tr>
+			<tr>
+				<td><a href="#">Pellentesque tincidunt</a></td>
+				<td>7</td>
+				<td><a href="#">Edit</a></td>
+				<td><a href="#">Delete</a></td>
+			</tr>
+		</table>
+		<!-- // -->
+        
+		<!-- Action Buttons for List -->
+		<div class="listButtonGroup">
+			<div class="actionDropUp actionDrop bottom">
+				<ul>
+					<li><a href="#">Add Something</a></li>
+					<li><a href="#">Delete Something</a></li>
+					<li><a href="#">Do Something</a></li>
+					<li><a href="#">Action This</a></li>
+				</ul>
+				<button class="btn greyBtn">Action Button<i class="icon-caret-up"></i></button>
+			</div>
+			<button class="btn greyBtn">Button</button>
+		</div>
+		<!-- // --> 
+        
+	<!-- / Close Body Content Container -->
+	</div>
+	<!-- // -->
+    
+<!-- / Close Main Wrapper -->    
+</div>
+<!-- // -->
+
+<!----------------- // END CONTENT ----------------->
+<!-- We attach our script triggers and initiation file -->
+<script type="text/javascript" src="app-assets/js/scripts.js"></script>
+</body>
+</html>

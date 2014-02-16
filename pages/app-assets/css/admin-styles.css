@@ -1,0 +1,746 @@
+/*//////////////////// CSS RESET ////////////////////*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, input, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin:0;padding:0;border:0;font-size:100%;font:inherit;}
+/*////////// HTML5 display-role reset for older browsers*/
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{display:block;}body{line-height:1;}a, img{outline:none;}a{text-decoration:none;}ol, ul{list-style:none;}blockquote, q{quotes:none;}blockquote:before, blockquote:after, q:before, q:after{content:'';content:none;}table{border-collapse:collapse;border-spacing:0;}
+/*////////// Clearfix*/
+.clearfix:before, .clearfix:after, #adminSubMenuContainer:before, #adminSubMenuContainer:after, .pageBtnGroup:before, .pageBtnGroup:after, .listButtonGroup:before, .listButtonGroup:after, .dropUp:before:before, .dropUp:after, .dropDown:before, .dropDown:after, .checkField:before, .checkField:after{display:table;content:"";}.clearfix:after, #adminSubMenuContainer:after, .pageBtnGroup:after, .listButtonGroup:after, .dropUp:after, .dropDown:after, .checkField:after{clear:both;}
+/*//////////////////// GLOBAL STYLES ////////////////////*/
+body.adminCustomPage {
+	color:#333;
+	font-family:'Lucida Grande', 'Lucida Sans Unicode', Helvetica, Arial, sans-serif;
+	font-size:9pt;
+	position:relative; /*So we can set some buttons to absolute bottom*/
+}
+p, a, li, td {
+	font-size:9pt;
+	line-height:16px;
+}
+a {color:#1e86e3;}
+
+/*We set these because the font Lucida doesn't apply 'strong/bold' and 'em/italic' to the font*/
+strong {font-weight:bold;}
+em {font-style:italic;}
+
+/*	We set these to reduce the amount of css so we can apply it when needed
+	and overwrite original styles applied to an element */
+.left {text-align:left !important;} 
+.right {text-align:right !important;}
+.center {text-align:center !important;}
+.justify {text-align:justify !important;}
+.floatLeft {float:left !important;}
+.floatRight {float:right !important;}
+
+/*	This is simply to force the style to this class
+	as some other global style may be applied to a parent
+	or wrapping element */
+.req {color:#F00 !important;} 
+
+/* This is for a link to go back to main page of your app */
+.backLink {padding:10px 20px 0;}
+
+/*//////////////////// SUB MENU ////////////////////*/
+#adminSubMenuContainer > ul {
+	float:left;
+	width:100%;
+}
+#adminSubMenuContainer > ul > li {
+	float:left;
+}
+/*////////// Standard Menu in Blue */
+#adminSubMenuContainer.blueNav {
+	border-bottom:1px solid #e8e7e4;
+	height:40px;
+}
+#adminSubMenuContainer.blueNav > ul {
+	height:40px;
+}
+#adminSubMenuContainer.blueNav > ul > li > a {
+	color:#333;
+	display:block;
+	font-family:Myriad-Pro, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	height:40px;
+	line-height:40px;
+	padding:0 12px;
+}
+#adminSubMenuContainer.blueNav > ul > li > a:hover,
+#adminSubMenuContainer.blueNav > ul > li > a:active {
+	color:#1E85E3;
+}
+#adminSubMenuContainer.blueNav ul li a.active /* Change this anchor class to whatever class you use for the selected state*/
+{
+	text-shadow:0 1px 1px #004B7C;
+}
+/*////////// Menu with Grey Buttons */
+#adminSubMenuContainer.greyNav {
+	border-bottom:1px solid #e8e7e4;
+	margin-bottom:10px;
+	padding:20px 20px 20px;
+}
+#adminSubMenuContainer.greyNav .btn {
+	margin-right:12px;
+}
+/*///// 'More' Sub-menu */
+#adminSubMenuContainer > ul > li.more {
+	position:relative;
+}
+#adminSubMenuContainer > ul > li.more > a {
+	padding-right:18px; /*Give some space to the arrow*/
+	position:relative;
+}
+#adminSubMenuContainer > ul > li.more > a > span {
+	display:block;
+	float:left;
+}
+#adminSubMenuContainer > ul > li.more > a > i {
+	color:#999;
+	display:block;
+	float:left;
+	font-size:14px;
+	line-height:40px;
+	margin-left:5px;
+}
+#adminSubMenuContainer > ul > li.more ul {
+	background:#FFF;
+	border:1px solid #ccc;
+		border-radius:0 0 2px 2px;
+   -moz-border-radius:0 0 2px 2px;
+-webkit-border-radius:0 0 2px 2px;
+		box-shadow:0 4px 9px #CCC;
+   -moz-box-shadow:0 4px 9px #CCC;
+-webkit-box-shadow:0 4px 9px #CCC;
+	display:none;
+	min-width:200px;
+	padding:5px 0;
+	position:absolute;
+	right:0;
+	text-align:left;
+	top:40px;
+	z-index:11;
+}
+#adminSubMenuContainer > ul > li.more ul li {
+	float:none;
+}
+#adminSubMenuContainer > ul > li.more ul li a {
+	color:#333;
+	display:block;
+	font-family:Myriad-Pro, Helvetica, Arial, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	padding:5px 0 6px 20px;
+	min-width:200px;
+}
+#adminSubMenuContainer > ul > li.more ul li a:hover,
+#adminSubMenuContainer > ul > li.more ul li a:active {
+	color:#1E85E3;
+}
+#adminSubMenuContainer > ul > li.more ul li a.active:hover /* Change this anchor class to whatever class you use for the selected state*/
+{
+	color:#fff;/*keep colour white on hover for the selected state*/
+}
+/*//////////////////// BUTTONS AND MENUS ////////////////////*/
+/*////////// Shared Styles */
+.btn {
+		  border-radius:2px;
+	-moz-border-radius:2px;
+-webkit-border-radius:2px;
+	border-style:solid;
+	border-width:1px;
+	cursor:pointer; /*We have this mainly for the input buttons*/
+	display:block;
+	float:left;
+	font-family:'Lucida Grande', 'Lucida Sans Unicode', Helvetica, Arial, sans-serif;
+	height:23px;
+	margin:0; /*remove default margin*/
+	max-width:160px; /*Change this to a higher value if you have a longer button somewhere*/
+	min-width:76px;
+	outline:none;
+	margin-right:12px;
+	padding:0 10px;
+	text-align:center;
+}
+/*	An action button with arrow, Drop-down or Drop-up.
+	Just add a span with a class of 'action' after
+	the button text */
+.btn i {
+	margin-left:5px;
+}
+/*////// Blue */
+.btn.blueBtn,
+#adminSubMenuContainer.blueNav ul li a.active /* Change this anchor class to whatever class you use for the selected state*/
+{
+	background:#2996e3;
+	background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI5OTZlMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzODdlZDciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background:linear-gradient(to bottom, #2996e3 0%, #387ed7 100%);
+	background:-moz-linear-gradient(top, #2996e3 0%, #387ed7 100%);
+	background:-ms-linear-gradient(top, #2996e3 0%, #387ed7 100%);
+	background:-o-linear-gradient(top, #2996e3 0%, #387ed7 100%);
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#2996e3), color-stop(100%,#387ed7));
+	background:-webkit-linear-gradient(top, #2996e3 0%, #387ed7 100%);
+	color:#FFF;
+	text-shadow:0 -1px 0 #0453C9;
+}
+/*/// Buttons Only*/
+/*Blue Link*/
+.btn.blueBtn {
+	border-color:#137EDA #0D6ACC #0652BA #0652BA;
+	font-size:9.5pt;
+	font-weight:normal;
+	line-height:21px; /*Depends on the browser sometimes this "visually" looks off by 1 or 2 pixels. Edit as you see fit*/
+}
+/*Blue Hover*/
+.btn.blueBtn:hover {
+	background:#3781D6;
+}
+/*////// Grey */
+/*Grey Link*/
+.btn.greyBtn {
+	background:#ffffff;
+	background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkZWRlZGUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background:linear-gradient(to bottom, #ffffff 0%, #dedede 100%);
+	background:-moz-linear-gradient(top, #ffffff 0%, #dedede 100%);
+	background:-ms-linear-gradient(top, #ffffff 0%, #dedede 100%);
+	background:-o-linear-gradient(top, #ffffff 0%, #dedede 100%);
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dedede));
+	background:-webkit-linear-gradient(top, #ffffff 0%, #dedede 100%);
+	border:1px solid #8C8C8C;
+	color:#333;
+	font-size:9pt;
+	font-weight:bold;
+	line-height:21px; /*Depends on the browser sometimes this "visually" looks off by 1 or 2 pixels. Edit as you see fit*/
+	text-shadow:0 1px 0 #ffffff;
+}
+/*Grey Hover*/
+.btn.greyBtn:hover {
+	background:#dddddd;
+	background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2RkZGRkZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZWVlZWUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background:linear-gradient(to bottom, #dddddd 0%, #eeeeee 100%);
+	background:-moz-linear-gradient(top, #dddddd 0%, #eeeeee 100%);
+	background:-ms-linear-gradient(top, #dddddd 0%, #eeeeee 100%);
+	background:-o-linear-gradient(top, #dddddd 0%, #eeeeee 100%);
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(100%,#eeeeee));
+	background:-webkit-linear-gradient(top, #dddddd 0%, #eeeeee 100%);
+}
+/*////////// Higher Buttons  */
+/*	These styles are just to give the buttons more
+	height and line-height when needed.
+	For example, for the form 'Save' or 'Edit'
+	buttons located at the bottom of the page.
+	You just need to add a class of 'lrgBtn',
+	to the anchors, inputs and/or buttons . */
+	
+/*	Also we should always have the buttons that
+	are absolute to the page larger in height like BC.
+	So don't assign 'lrgBtn' class to those,
+	just wrap them in a div with a class of 'pageBtnGroup' */
+/*Blue Button*/
+.pageBtnGroup .btn,
+.btn.blueBtn.lrgBtn {
+	height:29px;
+	line-height:27px;
+}
+.pageBtnGroup a.btn {/*Anchor Tags and Input buttons have different default measurements*/
+	height:27px;
+	max-width:56px;
+	min-width:56px;
+}
+/*Grey Button*/
+.btn.greyBtn.lrgBtn {
+	height:29px;
+	line-height:28px;
+}
+/*////////// Overwrite Anchor Button  */
+/*	We do this so the anchor button contains
+	to its size. But you can overwrite this
+	if you need to */
+a.btn {
+	float:left;
+	height:21px; /*Fixing block element extra height added by borders*/
+}
+/*////////// Buttons For Table List */
+.listButtonGroup {
+	background:#e9e9e9;
+	padding:7px 12px;
+}
+/*////////// Buttons Absolute to Bottom of Page */
+.pageBtnGroup {
+	border-top:1px solid #D6D6D6;
+	bottom:-65px;
+	left:-20px;
+	padding:15px 0 0;
+	position:absolute;
+	width:100%;
+}
+.pageBtnGroup .btn {
+	float:left;
+	margin:0 10px;
+}
+.pageBtnGroup .btn.greyBtn a {
+	height:31px;
+	line-height:31px;
+	max-width:160px;
+	min-width:56px;
+	text-align:center;
+}
+/*//////////////////// ACTION DROP-UPS AND DROP-DOWNS ////////////////////*/
+.actionDrop {
+	position:relative;
+	float:left;
+}
+.actionDrop ul  {
+	background:#FFF;
+	border:1px solid #ccc;
+		border-radius:2px 2px 0 0;
+   -moz-border-radius:2px 2px 0 0;
+-webkit-border-radius:2px 2px 0 0;
+		box-shadow:0 -4px 9px #CCC;
+   -moz-box-shadow:0 -4px 9px #CCC;
+-webkit-box-shadow:0 -4px 9px #CCC;
+	max-width:180px;
+	float:left;
+	min-width:150px;
+	position:absolute;
+	left:0;
+	text-align:left;
+	z-index:11;
+}
+.actionDrop ul li a {
+	border-top:1px solid #eee;
+	color:#000;
+	display:block;
+	font-size:8pt;
+	font-weight:bold;
+	line-height:29px;
+	padding:0 15px;
+}
+.actionDrop ul li a:hover {
+	background:#e1e2e3;
+}
+.actionDrop ul li:first-child a {
+	border-top:none;
+}
+.actionDropUp ul {
+	bottom:23px;
+}
+.actionDropDown ul {
+	top:23px;
+}
+/*//////////////////// INSTRUCTION BOX TOGGLE ////////////////////*/
+/*////////// Toggle Buttons  */
+#showInstructions,
+#hideInstructions {
+	width:150px;
+}
+.instructionsToggle {
+	background:#f9f9f9;
+	display:block;
+	margin-top:20px;
+	padding:10px 20px;
+	position:relative;
+}
+.instructionsToggle i {
+	display:block;
+	float:right;
+	line-height:16px;
+	margin-left:5px;
+}
+.instructionsToggle i.icon-question-sign {
+	color:#ce0000;
+}
+/*////////// Instructions Content  */
+.mainNote {
+	background:#f9f9f9;
+	padding:20px;
+}
+.mainNote h2 {
+	color:#777;
+	font-family:Myriad-Pro, Arial, Helvetica, sans-serif;
+	font-size:14pt;
+	margin-bottom:10px;
+}
+/*Reset back list style*/
+.mainNote ul {
+	margin-left:30px;
+}
+.mainNote li {
+	list-style:disc;
+	margin-bottom:3px;
+}
+.mainNote li,
+.mainNote p {
+	color:#777;
+	line-height:18px;
+	
+}
+.mainNote p {
+	margin-bottom:8px;
+}
+/*//////////////////// MAIN CONTENT ////////////////////*/
+/*////////// Content Wrappers and Container  */
+#adminContentWrapper {
+	padding:20px;
+	min-width:690px !important;
+	text-align:left;
+}
+#adminContentWrapper .contentBody {
+	clear:both;
+}
+/*////////// List Filtering  */
+#filtering .filterDropDown {
+	float:none;
+	margin-bottom:26px;
+}
+#filtering a.filterLink {
+	border-bottom:1px solid #d4d4d4;
+	clear:both;
+	display:block;
+	float:left;
+	font-family:Myriad-Pro, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	height:8px;
+	width:100%;
+}
+#filtering a.filterLink span {
+	background:#FFF;
+	display:block;
+	float:left;
+}
+#filtering a.filterLink i {
+	float:right;
+	font-size:12pt;
+	margin:0 10px 0 5px;
+}
+#filtering .filterFormContainer {
+	background:#FFF;
+	border:1px solid #ccc;
+		  border-radius:2px;
+   -moz-border-radius:2px;
+-webkit-border-radius:2px;
+		  box-shadow:0 4px 9px #ccc;
+   -moz-box-shadow:0 4px 9px #ccc;
+-webkit-box-shadow:0 4px 9px #ccc;
+	float:left;
+	position:absolute;
+	left:0;
+	text-align:left;
+	top:20px;
+	width:350px;
+	z-index:11;
+}
+#filtering .filterFormContainer #filterForm {
+	margin-bottom:0;
+}
+#filtering .filterFormContainer #filterForm table td {
+	padding:10px;
+}
+#filtering .filterFormContainer #filterForm table.filterAction {
+	border-top:1px solid #ccc;
+	width:100%;
+}
+#filtering .filterFormContainer #filterForm table.filterAction td input {
+	float:right;
+	margin-right:0;
+}
+/*////////// Filterable List Table  */
+#listForm #sortList {
+	border:1px solid #dbdbdb;
+	border-top:none;
+}
+#listForm #sortListHead {
+	background:#dbdbdb;
+	border:1px solid #dbdbdb;
+	border-bottom:none;
+	font-weight:bold;
+}
+#listForm ul li div {
+	display:block;
+	float:left;
+	padding:8px;
+}
+#listForm ul li div:first-child {
+	width:12px;
+	padding:8px 12px;
+}
+#listForm ul li div:nth-child(2) {
+	width:49%;
+}
+#listForm ul li div:nth-child(3) {
+	width:15%;
+}
+#listForm ul li div:nth-child(4) {
+	width:12.5%;
+}
+#listForm ul li div:nth-child(5) {
+	width:8%;
+}
+#listForm ul li div:nth-child(3),
+#listForm ul li div:nth-child(4),
+#listForm ul li div:nth-child(5) {
+	text-align:center;
+}
+#listForm #sortList li:nth-child(even) {
+	background: #fff;
+}
+#listForm #sortList li:nth-child(odd) {
+	background: #f2f2f2;
+}
+/*Alphanumeric Filtering Navigation */
+#sortList-nav {
+	clear:both;
+	margin:0 0 10px;
+}
+#sortList-nav .ln-letters {
+	overflow:hidden;
+}
+#sortList-nav .ln-letters a {
+	display:block;
+	float:left;
+	font-size:0.9em;
+	font-weight:bold;
+	padding:2px 6px;
+	text-decoration:none;
+}
+#sortList-nav .ln-letters a:hover,
+#sortList-nav .ln-letters a.ln-selected {
+	color:#000;
+}
+#sortList-nav .ln-letters a.ln-disabled {
+	color:#ccc;
+}
+#sortList-nav .ln-letter-count {
+	color:#336699;
+	font-size:0.8em;
+	line-height:1;
+	margin-bottom:3px;
+	text-align:center;
+}
+/*////////// Section Headers  */ 
+h2.contentHeaders {
+	border-bottom:1px solid #d4d4d4;
+	clear:both;
+	display:block;
+	float:left;
+	font-family:Myriad-Pro, Arial, Helvetica, sans-serif;
+	font-size:20px;
+	font-weight:normal;
+	height:10px;
+	margin-bottom:20px;
+	padding:40px 0 0;
+	width:100%;
+}
+h2.contentHeaders span {
+	background:#FFF;
+	display:block;
+	float:left;
+	padding-right:10px;
+}
+#adminContentWrapper .contentBody:first-child > h2.contentHeaders {
+	padding-top:10px;
+}
+/*////////// Table List  */
+table.tableList {
+	border:1px solid #dbdbdb;
+	clear:both;
+}
+table.tableList th {
+	background:#dbdbdb;
+	font-weight:bold;
+}
+table.tableList th, table.tableList td {
+	height:27px;
+	padding:1px 7px 2px;
+	text-align:center;
+}
+table.tableList th:first-child, table.tableList td:first-child, form#listForm table.tableList th:nth-child(2), form#listForm table.tableList td:nth-child(2) {
+	padding-left:12px;
+	text-align:left;
+}
+table.tableList tr:nth-child(even) {
+	background:#fff;
+}
+table.tableList tr:nth-child(odd) {
+	background:#f2f2f2;
+}
+/*////////// Form Tables  */
+.formTable td.var {
+	height:39px;
+	padding-right:10px;
+	text-align:right;
+	width:170px;
+}
+.formTable td a {
+	margin-left:10px;
+	text-align:left;
+} 
+/*/// Form Elements*/
+form {
+	position:relative; /*So we can position the buttons at the bottom properly*/
+	margin-bottom:80px; /*Otherwise you won't see the buttons*/
+}
+
+form.standalone {
+	margin-bottom:0;
+}
+form label {
+	font-weight:bold;
+}
+form select,
+form textarea,
+form .field input
+/* 	Keep the class '.field' reference for input,
+	so it doesn't overwrite the submit input button,
+	or messes up checkboxes and radio boxes (specially in IE). */
+{
+	background:#f7f9fa;
+	border:1px solid #898989;
+		border-radius:2px;
+   -moz-border-radius:2px;
+-webkit-border-radius:2px;
+		box-shadow:inset 0 1px 2px #CCC;
+   -moz-box-shadow:inset 0 1px 2px #CCC;
+-webkit-box-shadow:inset 0 1px 2px #CCC;
+	color:#383939;
+	margin:2px 0;
+	padding:3px;
+	vertical-align:middle;
+}
+/*Select*/
+form select {
+	height:24px;
+	width:332px;
+}
+form .medField select {
+	width:196px;
+}
+form .smlField select {
+	width:130px;
+}
+/*Text Area*/
+form .textAreaField {
+	padding:8px 0;
+}
+form textarea {
+	height:80px;
+	line-height:20px;
+	width:323px;
+}
+/*Text Field*/
+form .field input {
+	height:15px;
+	width:323px;
+}
+form .medField input {
+	width:188px;
+}
+form .smlField input {
+	width:122px;
+}
+
+/*Single CheckBox (Nothing Special needed)*/
+/*Single Radio Box (Nothing Special needed)*/
+
+/*Checkbox and Radio Groups*/
+form .groupCheck span {
+	margin:0 12px 0 5px;
+}
+/*File Input (tweaking to look like BC's (check html file for details)*/
+form .file {
+	width:342px;
+}
+form .file #filename {
+	text-indent:-75px;
+	overflow:hidden;
+}
+form .fileInput {
+	float:left;
+	margin-right:10px;
+	overflow:hidden;
+	position:relative;
+}
+form .fileInput input {
+	cursor:pointer;
+	left:-80px;
+		  opacity:0;
+	-moz-opacity:0;
+-webkit-opacity:0;
+	position:absolute;
+	top:0;
+	width:170px;
+}
+form .fileInput a {
+	margin-left:0;
+}
+/*Address Table*/
+form .addressTable .smlField {
+	width:134px;
+}
+form .addressTable td.inField {
+	position:relative;
+}
+form .addressTable td.inField label {
+	color:#888;
+	font-weight:normal;
+	position:absolute;
+	left:5px;
+	top:12px;
+}
+/*/// Basic CRM Display*/
+form .crmDisplay td.var {
+	font-weight:bold;
+	height:32px;
+}
+form .crmDisplay.addressTable td.var {
+	height:50px;
+}
+form .crmDisplay td a {
+	margin-left:0;
+}
+/*/// Search Form*/
+form#searchForm {
+	float:right;
+	margin-bottom:0;
+	position:relative;
+}
+form#searchForm .field label {
+	color:#c1c1c1;
+	font-weight:normal;
+	left:5px;
+	position:absolute;
+	top:6px;
+}
+form#searchForm .field input {
+	margin:0;
+}
+form#searchForm .searchBtn {
+	position:absolute;
+	right:5px;
+	top:5px;
+}
+form#searchForm .searchBtn input {
+	cursor:pointer;
+	height:15px;
+		  opacity:0;
+	-moz-opacity:0;
+-webkit-opacity:0;
+	width:15px;
+}
+form#searchForm .searchBtn i {
+	color:#999;
+	height:15px;
+	position:absolute;
+	right:0;
+	width:15px;
+}
+/*/////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Font Icons Font-Awesome v3.2.1*/
+@font-face {font-family:'FontAwesome';src:url('../fonts/fontawesome.eot');src:url('../fonts/fontawesome.eot?#iefix') format('embedded-opentype'),url('../fonts/fontawesome.woff') format('woff'),url('../fonts/fontawesome.ttf') format('truetype'),url('../fonts/fontawesome.svg#FontAwesome') format('svg');font-style:normal;font-weight:normal;}
+[class^="icon-"],[class*=" icon-"]{font-family:FontAwesome;font-weight:normal;font-style:normal;font-size:1.1em;text-decoration:inherit;-webkit-font-smoothing:antialiased;}[class^="icon-"]:before,[class*=" icon-"]:before{text-decoration:inherit;display:inline-block;speak:none;}.icon-large:before{vertical-align:-10%;font-size:1.3333333333333333em;}a [class^="icon-"],a [class*=" icon-"],a [class^="icon-"]:before,a [class*=" icon-"]:before{display:inline;}[class^="icon-"].icon-fixed-width,[class*=" icon-"].icon-fixed-width{display:inline-block;width:1.2857142857142858em;text-align:center;}[class^="icon-"].icon-fixed-width.icon-large,[class*=" icon-"].icon-fixed-width.icon-large{width:1.5714285714285714em;}ul.icons-ul{list-style-type:none;text-indent:-0.7142857142857143em;margin-left:2.142857142857143em;}ul.icons-ul>li .icon-li{width:.7142857142857143em;display:inline-block;text-align:center;}[class^="icon-"].hide,[class*=" icon-"].hide{display:none;}.icon-muted{color:#eee;}.icon-light{color:#fff;}.icon-dark{color:#333;}.icon-border{border:solid 1px #eee;padding:.2em .25em .15em;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}.icon-2x{font-size:2em;}.icon-2x.icon-border{border-width:2px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}.icon-3x{font-size:3em;}.icon-3x.icon-border{border-width:3px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}.icon-4x{font-size:4em;}.icon-4x.icon-border{border-width:4px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;}.icon-5x{font-size:5em;}.icon-5x.icon-border{border-width:5px;-webkit-border-radius:7px;-moz-border-radius:7px;border-radius:7px;}.pull-right{float:right;}.pull-left{float:left;}[class^="icon-"].pull-left,[class*=" icon-"].pull-left{margin-right:.3em;}[class^="icon-"].pull-right,[class*=" icon-"].pull-right{margin-left:.3em;}[class^="icon-"],[class*=" icon-"]{display:inline;width:auto;height:auto;line-height:normal;vertical-align:baseline;background-image:none;background-position:0 0;background-repeat:repeat;margin-top:0;}.icon-white,.nav-pills>.active>a>[class^="icon-"],.nav-pills>.active>a>[class*=" icon-"],.nav-list>.active>a>[class^="icon-"],.nav-list>.active>a>[class*=" icon-"],.navbar-inverse .nav>.active>a>[class^="icon-"],.navbar-inverse .nav>.active>a>[class*=" icon-"],.dropdown-menu>li>a:hover>[class^="icon-"],.dropdown-menu>li>a:hover>[class*=" icon-"],.dropdown-menu>.active>a>[class^="icon-"],.dropdown-menu>.active>a>[class*=" icon-"],.dropdown-submenu:hover>a>[class^="icon-"],.dropdown-submenu:hover>a>[class*=" icon-"]{background-image:none;}.btn [class^="icon-"].icon-large,.nav [class^="icon-"].icon-large,.btn [class*=" icon-"].icon-large,.nav [class*=" icon-"].icon-large{line-height:.9em;}.btn [class^="icon-"].icon-spin,.nav [class^="icon-"].icon-spin,.btn [class*=" icon-"].icon-spin,.nav [class*=" icon-"].icon-spin{display:inline-block;}.nav-tabs [class^="icon-"],.nav-pills [class^="icon-"],.nav-tabs [class*=" icon-"],.nav-pills [class*=" icon-"],.nav-tabs [class^="icon-"].icon-large,.nav-pills [class^="icon-"].icon-large,.nav-tabs [class*=" icon-"].icon-large,.nav-pills [class*=" icon-"].icon-large{line-height:.9em;}.btn [class^="icon-"].pull-left.icon-2x,.btn [class*=" icon-"].pull-left.icon-2x,.btn [class^="icon-"].pull-right.icon-2x,.btn [class*=" icon-"].pull-right.icon-2x{margin-top:.18em;}.btn [class^="icon-"].icon-spin.icon-large,.btn [class*=" icon-"].icon-spin.icon-large{line-height:.8em;}.btn.btn-small [class^="icon-"].pull-left.icon-2x,.btn.btn-small [class*=" icon-"].pull-left.icon-2x,.btn.btn-small [class^="icon-"].pull-right.icon-2x,.btn.btn-small [class*=" icon-"].pull-right.icon-2x{margin-top:.25em;}.btn.btn-large [class^="icon-"],.btn.btn-large [class*=" icon-"]{margin-top:0;}.btn.btn-large [class^="icon-"].pull-left.icon-2x,.btn.btn-large [class*=" icon-"].pull-left.icon-2x,.btn.btn-large [class^="icon-"].pull-right.icon-2x,.btn.btn-large [class*=" icon-"].pull-right.icon-2x{margin-top:.05em;}.btn.btn-large [class^="icon-"].pull-left.icon-2x,.btn.btn-large [class*=" icon-"].pull-left.icon-2x{margin-right:.2em;}.btn.btn-large [class^="icon-"].pull-right.icon-2x,.btn.btn-large [class*=" icon-"].pull-right.icon-2x{margin-left:.2em;}.icon-stack{position:relative;display:inline-block;width:2em;height:2em;line-height:2em;vertical-align:-35%;}.icon-stack [class^="icon-"],.icon-stack [class*=" icon-"]{display:block;text-align:center;position:absolute;width:100%;height:100%;font-size:1em;line-height:inherit;*line-height:2em;}.icon-stack .icon-stack-base{font-size:2em;*line-height:1em;}.icon-spin{display:inline-block;-moz-animation:spin 2s infinite linear;-o-animation:spin 2s infinite linear;-webkit-animation:spin 2s infinite linear;animation:spin 2s infinite linear;}@-moz-keyframes spin{0%{-moz-transform:rotate(0deg);}100%{-moz-transform:rotate(359deg);}}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);}100%{-webkit-transform:rotate(359deg);}}@-o-keyframes spin{0%{-o-transform:rotate(0deg);}100%{-o-transform:rotate(359deg);}}@-ms-keyframes spin{0%{-ms-transform:rotate(0deg);}100%{-ms-transform:rotate(359deg);}}@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(359deg);}}.icon-rotate-90:before{-webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);-o-transform:rotate(90deg);transform:rotate(90deg);}.icon-rotate-180:before{-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);}.icon-rotate-270:before{-webkit-transform:rotate(270deg);-moz-transform:rotate(270deg);-ms-transform:rotate(270deg);-o-transform:rotate(270deg);transform:rotate(270deg);}.icon-flip-horizontal:before{-webkit-transform:scale(-1,1);-moz-transform:scale(-1,1);-ms-transform:scale(-1,1);-o-transform:scale(-1,1);transform:scale(-1,1);}.icon-flip-vertical:before{-webkit-transform:scale(1,-1);-moz-transform:scale(1,-1);-ms-transform:scale(1,-1);-o-transform:scale(1,-1);transform:scale(1,-1);}
+/*Selected Icons*/
+.icon-caret-down:before {content:"\f0d7";}
+.icon-caret-up:before {content:"\f0d8";}
+.icon-remove-sign:before {content:"\f057";}
+.icon-question-sign:before {content:"\f059";}
+.icon-search:before {content:"\f002";}
+
+
