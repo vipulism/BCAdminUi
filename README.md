@@ -1,4 +1,4 @@
-Bc Tweaks | BC Admin Ui. v1.0
+Bc Tweaks | BC Admin Ui. v1.1
 =============================
 
 Simple Ui to help with consistency of BC App Development look and feel. This is purely a replica of the BC styles with some additions, tweaks and some goodies.
