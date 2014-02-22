@@ -5,44 +5,10 @@ a.setOpacity(0)};a.prepForShow=function(){a.showing||(a.$label.css({opacity:0}).
 e&&e.enabledInputTypes||c.InFieldLabels.defaultOptions.enabledInputTypes;return this.each(function(){var d=c(this).attr("for"),a;d&&(d=document.getElementById(d))&&(a=c.inArray(d.type,f),-1===a&&"TEXTAREA"!==d.nodeName||new c.InFieldLabels(this,d,e))})}})(jQuery);
 
 // jQuery listnav plugin. Copyright (c) 2009 iHwy, Inc. Author: Jack Killpatrick. Version 2.1 (08/09/2009). Visit http://www.ihwy.com/labs/jquery-listnav-plugin.aspx for more information.
-(function($) {
-	$.fn.listnav = function(options) {
-		var opts = $.extend({}, $.fn.listnav.defaults, options); var letters = ['_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '-']; var firstClick = false; opts.prefixes = $.map(opts.prefixes, function(n) { return n.toLowerCase(); }); return this.each(function() {
-			var $wrapper, list, $list, $letters, $letterCount, id; id = this.id; $wrapper = $('#' + id + '-nav'); $list = $(this); var counts = {}, allCount = 0, isAll = true, numCount = 0, prevLetter = ''; function init() {
-				$wrapper.append(createLettersHtml()); $letters = $('.ln-letters', $wrapper).slice(0, 1); if (opts.showCounts) $letterCount = $('.ln-letter-count', $wrapper).slice(0, 1); addClasses(); addNoMatchLI(); if (opts.flagDisabled) addDisabledClass(); bindHandlers(); if (!opts.includeAll) $list.show(); if (!opts.includeAll) $('.all', $letters).remove(); if (!opts.includeNums) $('._', $letters).remove(); if (!opts.includeOther) $('.-', $letters).remove(); $(':last', $letters).addClass('ln-last'); if ($.cookie && (opts.cookieName != null)) { var cookieLetter = $.cookie(opts.cookieName); if (cookieLetter != null) opts.initLetter = cookieLetter; }
-				if (opts.initLetter != '') { firstClick = true; $('.' + opts.initLetter.toLowerCase(), $letters).slice(0, 1).click(); }
-				else { if (opts.includeAll) $('.all', $letters).addClass('ln-selected'); else { for (var i = ((opts.includeNums) ? 0 : 1); i < letters.length; i++) { if (counts[letters[i]] > 0) { firstClick = true; $('.' + letters[i], $letters).slice(0, 1).click(); break; } } } } 
-			}
-			function setLetterCountTop() { $letterCount.css({ top: $('.a', $letters).slice(0, 1).offset({ margin: false, border: true }).top - $letterCount.outerHeight({ margin: true }) }); }
-			function addClasses() {
-				var str, firstChar, firstWord, spl, $this, hasPrefixes = (opts.prefixes.length > 0); $($list).children().each(function() {
-					$this = $(this), firstChar = '', str = $.trim($this.text()).toLowerCase(); if (str != '') {
-						if (hasPrefixes) { spl = str.split(' '); if ((spl.length > 1) && ($.inArray(spl[0], opts.prefixes) > -1)) { firstChar = spl[1].charAt(0); addLetterClass(firstChar, $this, true); } }
-						firstChar = str.charAt(0); addLetterClass(firstChar, $this);
-					} 
-				});
-			}
-			function addLetterClass(firstChar, $el, isPrefix) { if (/\W/.test(firstChar)) firstChar = '-'; if (!isNaN(firstChar)) firstChar = '_'; $el.addClass('ln-' + firstChar); if (counts[firstChar] == undefined) counts[firstChar] = 0; counts[firstChar]++; if (!isPrefix) allCount++; }
-			function addDisabledClass() { for (var i = 0; i < letters.length; i++) { if (counts[letters[i]] == undefined) $('.' + letters[i], $letters).addClass('ln-disabled'); } }
-			function addNoMatchLI() { $list.append('<li class="ln-no-match" style="display:none">' + opts.noMatchText + '</li>'); }
-			function getLetterCount(el) { if ($(el).hasClass('all')) return allCount; else { var count = counts[$(el).attr('class').split(' ')[0]]; return (count != undefined) ? count : 0; } }
-			function bindHandlers() {
-				if (opts.showCounts) { $wrapper.mouseover(function() { setLetterCountTop(); }); }
-				if (opts.showCounts) { $('a', $letters).mouseover(function() { var left = $(this).position().left; var width = ($(this).outerWidth({ margin: true }) - 1) + 'px'; var count = getLetterCount(this); $letterCount.css({ left: left, width: width }).text(count).show(); }); $('a', $letters).mouseout(function() { $letterCount.hide(); }); }
-				$('a', $letters).click(function() {
-					$('a.ln-selected', $letters).removeClass('ln-selected'); var letter = $(this).attr('class').split(' ')[0]; if (letter == 'all') { $list.children().show(); $list.children('.ln-no-match').hide(); isAll = true; } else {
-						if (isAll) { $list.children().hide(); isAll = false; } else if (prevLetter != '') $list.children('.ln-' + prevLetter).hide(); var count = getLetterCount(this); if (count > 0) { $list.children('.ln-no-match').hide(); $list.children('.ln-' + letter).show(); }
-						else $list.children('.ln-no-match').show(); prevLetter = letter;
-					}
-					if ($.cookie && (opts.cookieName != null)) $.cookie(opts.cookieName, letter); $(this).addClass('ln-selected'); $(this).blur(); if (!firstClick && (opts.onClick != null)) opts.onClick(letter); else firstClick = false; return false;
-				});
-			}
-			function createLettersHtml() {
-				var html = []; for (var i = 1; i < letters.length; i++) { if (html.length == 0) html.push('<a class="all" href="#">ALL</a><a class="_" href="#">0-9</a>'); html.push('<a class="' + letters[i] + '" href="#">' + ((letters[i] == '-') ? 'Other' : letters[i].toUpperCase()) + '</a>'); }
-				return '<div class="ln-letters">' + html.join('') + '</div>' + ((opts.showCounts) ? '<div class="ln-letter-count" style="display:none; position:absolute; top:0; left:0; width:20px;">0</div>' : '');
-			}
-			init();
-		});
-	}; $.fn.listnav.defaults = { initLetter: '', includeAll: true, incudeOther: false, includeNums: true, flagDisabled: true, noMatchText: 'No matching entries', showCounts: true, cookieName: null, onClick: null, prefixes: [] };
-})(jQuery);
+(function(a){a.fn.listnav=function(n){var c=a.extend({},a.fn.listnav.defaults,n),e="_abcdefghijklmnopqrstuvwxyz-".split(""),m=!1;c.prefixes=a.map(c.prefixes,function(a){return a.toLowerCase()});return this.each(function(){function n(){var b,h,d,e,g=0<c.prefixes.length;a(f).children().each(function(){e=a(this);h="";b=a.trim(e.text()).toLowerCase();""!=b&&(g&&(d=b.split(" "),1<d.length&&-1<a.inArray(d[0],c.prefixes)&&(h=d[1].charAt(0),r(h,e,!0))),h=b.charAt(0),r(h,e))})}function r(b,a,c){/\W/.test(b)&&
+(b="-");isNaN(b)||(b="_");a.addClass("ln-"+b);void 0==g[b]&&(g[b]=0);g[b]++;c||s++}function t(b){if(a(b).hasClass("all"))return s;b=g[a(b).attr("class").split(" ")[0]];return void 0!=b?b:0}function u(){c.showCounts&&k.mouseover(function(){l.css({top:a(".a",d).slice(0,1).offset({margin:!1,border:!0}).top-l.outerHeight({margin:!0})})});c.showCounts&&(a("a",d).mouseover(function(){var b=a(this).position().left,c=a(this).outerWidth({margin:!0})-1+"px",d=t(this);l.css({left:b,width:c}).text(d).show()}),
+a("a",d).mouseout(function(){l.hide()}));a("a",d).click(function(){a("a.ln-selected",d).removeClass("ln-selected");var b=a(this).attr("class").split(" ")[0];"all"==b?(f.children().show(),f.children(".ln-no-match").hide(),p=!0):(p?(f.children().hide(),p=!1):""!=q&&f.children(".ln-"+q).hide(),0<t(this)?(f.children(".ln-no-match").hide(),f.children(".ln-"+b).show()):f.children(".ln-no-match").show(),q=b);a.cookie&&null!=c.cookieName&&a.cookie(c.cookieName,b);a(this).addClass("ln-selected");a(this).blur();
+if(m||null==c.onClick)m=!1;else c.onClick(b);return!1})}function v(){for(var b=[],a=1;a<e.length;a++)0==b.length&&b.push('<a class="all" href="#">ALL</a><a class="_" href="#">0-9</a>'),b.push('<a class="'+e[a]+'" href="#">'+("-"==e[a]?"Other":e[a].toUpperCase())+"</a>");return'<div class="ln-letters">'+b.join("")+"</div>"+(c.showCounts?'<div class="ln-letter-count" style="display:none; position:absolute; top:0; left:0; width:20px;">0</div>':"")}var k,f,d,l;k=a("#"+this.id+"-nav");f=a(this);var g=
+{},s=0,p=!0,q="";(function(){k.append(v());d=a(".ln-letters",k).slice(0,1);c.showCounts&&(l=a(".ln-letter-count",k).slice(0,1));n();f.append('<li class="ln-no-match" style="display:none">'+c.noMatchText+"</li>");if(c.flagDisabled)for(var b=0;b<e.length;b++)void 0==g[e[b]]&&a("."+e[b],d).addClass("ln-disabled");u();c.includeAll||f.show();c.includeAll||a(".all",d).remove();c.includeNums||a("._",d).remove();c.includeOther||a(".-",d).remove();a(":last",d).addClass("ln-last");a.cookie&&null!=c.cookieName&&
+(b=a.cookie(c.cookieName),null!=b&&(c.initLetter=b));if(""!=c.initLetter)m=!0,a("."+c.initLetter.toLowerCase(),d).slice(0,1).click();else if(c.includeAll)a(".all",d).addClass("ln-selected");else for(b=c.includeNums?0:1;b<e.length;b++)if(0<g[e[b]]){m=!0;a("."+e[b],d).slice(0,1).click();break}})()})};a.fn.listnav.defaults={initLetter:"",includeAll:!0,incudeOther:!1,includeNums:!0,flagDisabled:!0,noMatchText:"No matching entries",showCounts:!0,cookieName:null,onClick:null,prefixes:[]}})(jQuery);
 

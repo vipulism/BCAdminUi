@@ -1,14 +1,6 @@
 //No Conflict
 $j = jQuery.noConflict();
 var Trigger = {
-	simpleFixes: {
-		//This removes the default cross or question mark displayed by the browser if an image is not avalable. Good to have just in case
-		removeImgError	: function() {
-			$j('img').error(function(){
-				$j(this).attr('src', 'img/placeholder.jpg');
-			});
-		}
-	},
 	staticEffects: {
 		//Show/Hide the instruction box if provided to client
 		showInstruction: function() {
@@ -138,7 +130,6 @@ var Trigger = {
 };
 //Let's trigger all the above on page load.
 $j(document).ready(function($){
-	Trigger.simpleFixes.removeImgError();
 	Trigger.staticEffects.showInstruction();
 	Trigger.staticEffects.hideInstruction();
 	Trigger.staticEffects.showDropDown();
