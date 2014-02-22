@@ -15,6 +15,8 @@ If you find something that may be done differently for better performance or str
 
 Implementation of API of any sort is not included. This is purely design styling for all BC partners to work with.
 
+Compatibility Tests done on: Mac OSX v10.9.1 with Google Chrome v33. Please make your own compatibility tests for other browsers, devices and OS.
+
 The Ui has been tested in Chrome only at this stage. We will make further compatibility testings in the next version.
 
 In the mean time, please make sure everything works for you in supported browsers.
