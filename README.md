@@ -21,6 +21,4 @@ The Ui has been tested in Chrome only at this stage. We will make further compat
 
 In the mean time, please make sure everything works for you in supported browsers.
 
-For more details on this Ui go to http://www.bctweaks.com/video-tutorials/introducing-adobe-business-catalyst-open-platform
-
 Please read the license terms before use.
